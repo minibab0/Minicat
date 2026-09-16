@@ -1,28 +1,51 @@
-const canvas = document.getElementById("gameCanvas");
-const ctx = canvas.getContext("2d");
+const canvas =
+    document.getElementById("gameCanvas");
 
-const scoreText = document.getElementById("score");
+const ctx =
+    canvas.getContext("2d");
 
 
-// =====================================================
+const scoreText =
+    document.getElementById("score");
+
+
+// =========================================
 // 화면 크기
-// =====================================================
+// =========================================
 
-let screenWidth;
-let screenHeight;
+let screenWidth = 0;
+let screenHeight = 0;
+
 
 function resizeCanvas() {
 
-    screenWidth = window.innerWidth;
-    screenHeight = window.innerHeight;
+    screenWidth =
+        window.innerWidth;
 
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    screenHeight =
+        window.innerHeight;
 
-    canvas.width = screenWidth * dpr;
-    canvas.height = screenHeight * dpr;
 
-    canvas.style.width = screenWidth + "px";
-    canvas.style.height = screenHeight + "px";
+    const dpr =
+        Math.min(
+            window.devicePixelRatio || 1,
+            2
+        );
+
+
+    canvas.width =
+        screenWidth * dpr;
+
+    canvas.height =
+        screenHeight * dpr;
+
+
+    canvas.style.width =
+        screenWidth + "px";
+
+    canvas.style.height =
+        screenHeight + "px";
+
 
     ctx.setTransform(
         dpr,
@@ -34,57 +57,65 @@ function resizeCanvas() {
     );
 }
 
+
 window.addEventListener(
     "resize",
     resizeCanvas
 );
 
+
 resizeCanvas();
 
 
-// =====================================================
+// =========================================
 // 이미지
-// =====================================================
+// =========================================
 
-// 고양이 이미지
-const catImage = new Image();
+// 고양이
+const catImage =
+    new Image();
 
-catImage.src = "assets/cat.png";
+catImage.src =
+    "assets/cat.png";
 
 
 // 뒤쪽 GIF
-const backgroundGif = new Image();
+const backgroundGif =
+    new Image();
 
-backgroundGif.src = "assets/background.gif";
+backgroundGif.src =
+    "assets/background.gif";
 
 
-// =====================================================
+// =========================================
 // 게임 변수
-// =====================================================
+// =========================================
 
 let score = 0;
 
 let cameraX = 0;
 
 
-// 맵의 전체 길이
+// 전체 맵 길이
 const MAP_WIDTH = 8000;
 
 
-// =====================================================
+// =========================================
 // 플레이어
-// =====================================================
+// =========================================
 
 const player = {
 
     x: 200,
 
-    y: 300,
+    y: 200,
 
     width: 60,
+
     height: 60,
 
     velocityX: 0,
+
     velocityY: 0,
 
     speed: 0.7,
@@ -97,9 +128,9 @@ const player = {
 };
 
 
-// =====================================================
+// =========================================
 // 조작
-// =====================================================
+// =========================================
 
 const input = {
 
@@ -111,9 +142,9 @@ const input = {
 };
 
 
-// =====================================================
-// 키보드
-// =====================================================
+// =========================================
+// 키보드 조작
+// =========================================
 
 window.addEventListener(
     "keydown",
@@ -185,9 +216,9 @@ window.addEventListener(
 );
 
 
-// =====================================================
-// 터치 버튼
-// =====================================================
+// =========================================
+// 아이패드 버튼
+// =========================================
 
 function setupButton(
     id,
@@ -261,13 +292,16 @@ setupButton(
 );
 
 
-// =====================================================
+// =========================================
 // 맵
-// =====================================================
+// =========================================
 
 const platforms = [
 
-    // 시작 구간
+    // =========================
+    // 지상
+    // =========================
+
     {
         x: 0,
         y: 0,
@@ -275,7 +309,7 @@ const platforms = [
         height: 70
     },
 
-    // 두 번째 구간
+
     {
         x: 1150,
         y: 0,
@@ -283,7 +317,7 @@ const platforms = [
         height: 70
     },
 
-    // 세 번째
+
     {
         x: 2100,
         y: 0,
@@ -291,7 +325,7 @@ const platforms = [
         height: 70
     },
 
-    // 네 번째
+
     {
         x: 3250,
         y: 0,
@@ -299,7 +333,7 @@ const platforms = [
         height: 70
     },
 
-    // 다섯 번째
+
     {
         x: 4300,
         y: 0,
@@ -307,7 +341,7 @@ const platforms = [
         height: 70
     },
 
-    // 마지막
+
     {
         x: 5550,
         y: 0,
@@ -316,7 +350,9 @@ const platforms = [
     },
 
 
+    // =========================
     // 공중 발판
+    // =========================
 
     {
         x: 400,
@@ -325,12 +361,14 @@ const platforms = [
         height: 25
     },
 
+
     {
         x: 700,
         y: 280,
         width: 180,
         height: 25
     },
+
 
     {
         x: 1300,
@@ -339,12 +377,14 @@ const platforms = [
         height: 25
     },
 
+
     {
         x: 1600,
         y: 300,
         width: 180,
         height: 25
     },
+
 
     {
         x: 2300,
@@ -353,12 +393,14 @@ const platforms = [
         height: 25
     },
 
+
     {
         x: 2700,
         y: 320,
         width: 180,
         height: 25
     },
+
 
     {
         x: 3450,
@@ -367,12 +409,14 @@ const platforms = [
         height: 25
     },
 
+
     {
         x: 3800,
         y: 320,
         width: 180,
         height: 25
     },
+
 
     {
         x: 4550,
@@ -381,6 +425,7 @@ const platforms = [
         height: 25
     },
 
+
     {
         x: 5000,
         y: 300,
@@ -388,12 +433,14 @@ const platforms = [
         height: 25
     },
 
+
     {
         x: 5900,
         y: 200,
         width: 200,
         height: 25
     },
+
 
     {
         x: 6400,
@@ -405,9 +452,9 @@ const platforms = [
 ];
 
 
-// =====================================================
+// =========================================
 // 코인
-// =====================================================
+// =========================================
 
 const coins = [
 
@@ -417,11 +464,13 @@ const coins = [
         collected: false
     },
 
+
     {
         x: 800,
         y: 340,
         collected: false
     },
+
 
     {
         x: 1400,
@@ -429,11 +478,13 @@ const coins = [
         collected: false
     },
 
+
     {
         x: 1700,
         y: 360,
         collected: false
     },
+
 
     {
         x: 2400,
@@ -441,11 +492,13 @@ const coins = [
         collected: false
     },
 
+
     {
         x: 2800,
         y: 380,
         collected: false
     },
+
 
     {
         x: 3550,
@@ -453,11 +506,13 @@ const coins = [
         collected: false
     },
 
+
     {
         x: 3900,
         y: 380,
         collected: false
     },
+
 
     {
         x: 4650,
@@ -465,17 +520,20 @@ const coins = [
         collected: false
     },
 
+
     {
         x: 5100,
         y: 360,
         collected: false
     },
 
+
     {
         x: 6000,
         y: 260,
         collected: false
     },
+
 
     {
         x: 6500,
@@ -486,9 +544,9 @@ const coins = [
 ];
 
 
-// =====================================================
+// =========================================
 // 충돌
-// =====================================================
+// =========================================
 
 function collision(
     a,
@@ -497,27 +555,31 @@ function collision(
 
     return (
 
-        a.x < b.x + b.width &&
+        a.x <
+        b.x + b.width &&
 
-        a.x + a.width > b.x &&
+        a.x + a.width >
+        b.x &&
 
-        a.y < b.y + b.height &&
+        a.y <
+        b.y + b.height &&
 
-        a.y + a.height > b.y
+        a.y + a.height >
+        b.y
 
     );
 }
 
 
-// =====================================================
+// =========================================
 // 플레이어 업데이트
-// =====================================================
+// =========================================
 
 function updatePlayer() {
 
-    // -----------------------------
-    // 좌우 이동
-    // -----------------------------
+    // -------------------------
+    // 왼쪽
+    // -------------------------
 
     if (input.left) {
 
@@ -527,6 +589,10 @@ function updatePlayer() {
     }
 
 
+    // -------------------------
+    // 오른쪽
+    // -------------------------
+
     if (input.right) {
 
         player.velocityX +=
@@ -535,9 +601,9 @@ function updatePlayer() {
     }
 
 
-    // -----------------------------
+    // -------------------------
     // 최대 속도
-    // -----------------------------
+    // -------------------------
 
     if (
         player.velocityX >
@@ -561,23 +627,24 @@ function updatePlayer() {
     }
 
 
-    // -----------------------------
-    // 마찰
-    // -----------------------------
+    // -------------------------
+    // 멈출 때
+    // -------------------------
 
     if (
         !input.left &&
         !input.right
     ) {
 
-        player.velocityX *= 0.85;
+        player.velocityX *=
+            0.85;
 
     }
 
 
-    // -----------------------------
+    // -------------------------
     // 점프
-    // -----------------------------
+    // -------------------------
 
     if (
         input.jump &&
@@ -591,35 +658,48 @@ function updatePlayer() {
             false;
 
         input.jump = false;
+
     }
 
 
-    // -----------------------------
+    // -------------------------
     // 중력
-    // -----------------------------
+    // -------------------------
 
-    player.velocityY += 0.7;
+    player.velocityY +=
+        0.7;
 
 
-    // -----------------------------
-    // 이동
-    // -----------------------------
+    // -------------------------
+    // 실제 이동
+    // -------------------------
 
     player.x +=
         player.velocityX;
+
 
     player.y +=
         player.velocityY;
 
 
-    // 맵 밖으로 못 나가게
-    if (player.x < 0) {
+    // -------------------------
+    // 맵 왼쪽 제한
+    // -------------------------
+
+    if (
+        player.x < 0
+    ) {
 
         player.x = 0;
 
         player.velocityX = 0;
+
     }
 
+
+    // -------------------------
+    // 맵 오른쪽 제한
+    // -------------------------
 
     if (
         player.x >
@@ -634,34 +714,36 @@ function updatePlayer() {
     }
 
 
-    // -----------------------------
+    // -------------------------
     // 발판 충돌
-    // -----------------------------
+    // -------------------------
 
-    player.grounded = false;
+    player.grounded =
+        false;
+
+
+    const groundY =
+        screenHeight - 100;
 
 
     for (
         const platform of platforms
     ) {
 
-        const platformScreenY =
-            screenHeight -
-            100 -
-            platform.y -
-            platform.height;
-
-
         const platformObject = {
 
             x: platform.x,
 
-            y: platformScreenY,
+            y:
+                groundY -
+                platform.y -
+                platform.height,
 
-            width: platform.width,
+            width:
+                platform.width,
 
-            height: platform.height
-
+            height:
+                platform.height
         };
 
 
@@ -691,18 +773,21 @@ function updatePlayer() {
                 platformObject.y -
                 player.height;
 
+
             player.velocityY = 0;
 
-            player.grounded = true;
+
+            player.grounded =
+                true;
 
         }
 
     }
 
 
-    // -----------------------------
-    // 떨어지면 처음으로
-    // -----------------------------
+    // -------------------------
+    // 떨어지면 시작 위치
+    // -------------------------
 
     if (
         player.y >
@@ -720,9 +805,9 @@ function updatePlayer() {
     }
 
 
-    // -----------------------------
-    // 카메라
-    // -----------------------------
+    // -------------------------
+    // 카메라 이동
+    // -------------------------
 
     const targetCamera =
         player.x -
@@ -736,7 +821,9 @@ function updatePlayer() {
         ) * 0.08;
 
 
-    if (cameraX < 0) {
+    if (
+        cameraX < 0
+    ) {
 
         cameraX = 0;
 
@@ -758,9 +845,9 @@ function updatePlayer() {
 }
 
 
-// =====================================================
+// =========================================
 // 코인 업데이트
-// =====================================================
+// =========================================
 
 function updateCoins() {
 
@@ -779,9 +866,11 @@ function updateCoins() {
 
         const coinObject = {
 
-            x: coin.x - 15,
+            x:
+                coin.x - 15,
 
-            y: coin.y - 15,
+            y:
+                coin.y - 15,
 
             width: 30,
 
@@ -800,7 +889,9 @@ function updateCoins() {
             coin.collected =
                 true;
 
+
             score += 10;
+
 
             scoreText.textContent =
                 "SCORE : " + score;
@@ -812,13 +903,16 @@ function updateCoins() {
 }
 
 
-// =====================================================
-// 배경 그리기
-// =====================================================
+// =========================================
+// 배경
+// =========================================
 
 function drawBackground() {
 
-    // 하늘
+    // -------------------------
+    // 파란 하늘
+    // -------------------------
+
     const sky =
         ctx.createLinearGradient(
             0,
@@ -836,11 +930,12 @@ function drawBackground() {
 
     sky.addColorStop(
         1,
-        "#bde9ff"
+        "#c7efff"
     );
 
 
-    ctx.fillStyle = sky;
+    ctx.fillStyle =
+        sky;
 
 
     ctx.fillRect(
@@ -851,9 +946,9 @@ function drawBackground() {
     );
 
 
-    // ---------------------------------
+    // -------------------------
     // 뒤쪽 GIF
-    // ---------------------------------
+    // -------------------------
 
     if (
         backgroundGif.complete &&
@@ -863,33 +958,32 @@ function drawBackground() {
         ctx.save();
 
 
-        /*
-         * GIF를 화면 뒤쪽에 크게 표시
-         * globalAlpha = 투명도
-         * filter = 흐림
-         */
+        // 투명하게
+        ctx.globalAlpha =
+            0.20;
 
-        ctx.globalAlpha = 0.22;
 
+        // 흐리게
         ctx.filter =
             "blur(8px)";
 
 
         const gifWidth =
-            screenWidth * 1.3;
+            screenWidth * 1.4;
+
 
         const gifHeight =
-            screenHeight * 0.8;
+            screenHeight * 0.75;
 
 
         ctx.drawImage(
 
             backgroundGif,
 
-            screenWidth * 0.5 -
-            gifWidth * 0.5,
+            screenWidth / 2 -
+            gifWidth / 2,
 
-            screenHeight * 0.12,
+            screenHeight * 0.10,
 
             gifWidth,
 
@@ -903,57 +997,95 @@ function drawBackground() {
     }
 
 
-    // ---------------------------------
+    // -------------------------
     // 구름
-    // ---------------------------------
+    // -------------------------
 
     drawCloud(
-        120 - cameraX * 0.15,
-        110,
+        100 -
+        cameraX * 0.12,
+
+        100,
+
         1
     );
 
 
     drawCloud(
-        550 - cameraX * 0.10,
-        190,
+        550 -
+        cameraX * 0.08,
+
+        180,
+
         0.8
     );
 
 
     drawCloud(
-        950 - cameraX * 0.12,
+        1000 -
+        cameraX * 0.10,
+
         80,
+
         1.2
     );
 
 
     drawCloud(
-        1450 - cameraX * 0.10,
+        1500 -
+        cameraX * 0.08,
+
         150,
+
         0.9
     );
 
 
     drawCloud(
-        2000 - cameraX * 0.12,
+        2100 -
+        cameraX * 0.10,
+
         100,
+
         1.1
     );
 
 
     drawCloud(
-        2700 - cameraX * 0.10,
+        2800 -
+        cameraX * 0.08,
+
         180,
+
         0.8
+    );
+
+
+    drawCloud(
+        3600 -
+        cameraX * 0.10,
+
+        90,
+
+        1
+    );
+
+
+    drawCloud(
+        4500 -
+        cameraX * 0.08,
+
+        170,
+
+        0.9
     );
 
 }
 
 
-// =====================================================
+// =========================================
 // 구름
-// =====================================================
+// =========================================
 
 function drawCloud(
     x,
@@ -963,10 +1095,12 @@ function drawCloud(
 
     ctx.save();
 
+
     ctx.translate(
         x,
         y
     );
+
 
     ctx.scale(
         scale,
@@ -975,10 +1109,11 @@ function drawCloud(
 
 
     ctx.fillStyle =
-        "rgba(255,255,255,0.85)";
+        "rgba(255,255,255,0.88)";
 
 
     ctx.beginPath();
+
 
     ctx.arc(
         0,
@@ -1017,14 +1152,15 @@ function drawCloud(
 
     ctx.fill();
 
+
     ctx.restore();
 
 }
 
 
-// =====================================================
+// =========================================
 // 맵 그리기
-// =====================================================
+// =========================================
 
 function drawMap() {
 
@@ -1047,11 +1183,14 @@ function drawMap() {
             platform.height;
 
 
-        // 화면 밖이면 그리지 않음
+        // 화면 밖이면 생략
 
         if (
+
             x + platform.width < 0 ||
+
             x > screenWidth
+
         ) {
 
             continue;
@@ -1069,6 +1208,7 @@ function drawMap() {
 
             x,
             y,
+
             platform.width,
             platform.height
 
@@ -1085,30 +1225,40 @@ function drawMap() {
 
             x,
             y,
+
             platform.width,
             10
 
         );
 
 
-        // 작은 풀무늬
+        // 잔디 디테일
 
         ctx.fillStyle =
             "#78bd52";
 
 
         for (
+
             let grassX = x;
+
             grassX <
             x + platform.width;
+
             grassX += 25
+
         ) {
 
             ctx.fillRect(
+
                 grassX,
+
                 y - 4,
+
                 12,
+
                 5
+
             );
 
         }
@@ -1118,9 +1268,9 @@ function drawMap() {
 }
 
 
-// =====================================================
+// =========================================
 // 코인 그리기
-// =====================================================
+// =========================================
 
 function drawCoins() {
 
@@ -1147,14 +1297,20 @@ function drawCoins() {
 
 
         if (
+
             x < -50 ||
-            x > screenWidth + 50
+
+            x >
+            screenWidth + 50
+
         ) {
 
             continue;
 
         }
 
+
+        // 코인
 
         ctx.fillStyle =
             "#ffd83d";
@@ -1164,16 +1320,22 @@ function drawCoins() {
 
 
         ctx.arc(
+
             x,
             y,
+
             13,
+
             0,
             Math.PI * 2
+
         );
 
 
         ctx.fill();
 
+
+        // 빛
 
         ctx.fillStyle =
             "#fff4a3";
@@ -1183,11 +1345,15 @@ function drawCoins() {
 
 
         ctx.arc(
+
             x - 4,
             y - 4,
+
             4,
+
             0,
             Math.PI * 2
+
         );
 
 
@@ -1198,9 +1364,9 @@ function drawCoins() {
 }
 
 
-// =====================================================
-// 플레이어 그리기
-// =====================================================
+// =========================================
+// 고양이 그리기
+// =========================================
 
 function drawPlayer() {
 
@@ -1214,8 +1380,11 @@ function drawPlayer() {
 
 
     if (
+
         catImage.complete &&
+
         catImage.naturalWidth > 0
+
     ) {
 
         ctx.drawImage(
@@ -1232,9 +1401,11 @@ function drawPlayer() {
 
         );
 
-    } else {
+    }
 
-        // 이미지가 아직 없을 경우
+    else {
+
+        // 이미지가 없을 경우
         // 임시 고양이
 
         ctx.fillStyle =
@@ -1244,8 +1415,11 @@ function drawPlayer() {
         ctx.fillRect(
 
             drawX,
+
             drawY,
+
             player.width,
+
             player.height
 
         );
@@ -1255,9 +1429,9 @@ function drawPlayer() {
 }
 
 
-// =====================================================
+// =========================================
 // 게임 업데이트
-// =====================================================
+// =========================================
 
 function update() {
 
@@ -1268,9 +1442,9 @@ function update() {
 }
 
 
-// =====================================================
+// =========================================
 // 게임 그리기
-// =====================================================
+// =========================================
 
 function draw() {
 
@@ -1285,9 +1459,9 @@ function draw() {
 }
 
 
-// =====================================================
+// =========================================
 // 게임 루프
-// =====================================================
+// =========================================
 
 function gameLoop() {
 
@@ -1302,6 +1476,8 @@ function gameLoop() {
 }
 
 
+// =========================================
 // 게임 시작
+// =========================================
 
 gameLoop();
