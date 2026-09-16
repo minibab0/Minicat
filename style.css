@@ -1,7 +1,7 @@
 * {
-    box-sizing: border-box;
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
 html,
@@ -10,45 +10,32 @@ body {
     height: 100%;
     overflow: hidden;
 
-    touch-action: none;
-    user-select: none;
+    background: #75cfff;
 
     font-family:
         Arial,
-        Helvetica,
         sans-serif;
 
-    background: #78cfff;
+    /* 모바일에서 화면을 움직이지 않게 함 */
+    touch-action: none;
+
+    user-select: none;
 }
 
-
-/* =================================
-   게임 전체
-================================= */
+/* 게임 전체 */
 
 #game-container {
     position: relative;
 
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 100vh;
 
     overflow: hidden;
-
-    background:
-        linear-gradient(
-            #65c9ff 0%,
-            #bdeaff 75%,
-            #dff6ff 100%
-        );
 }
 
+/* 게임 캔버스 */
 
-/* =================================
-   GIF 뒷배경
-================================= */
-
-#gif-background {
-
+#gameCanvas {
     position: absolute;
 
     left: 0;
@@ -56,115 +43,55 @@ body {
 
     width: 100%;
     height: 100%;
-
-    background-image: url("assets/background.gif");
-
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-
-    /*
-        GIF가 너무 튀지 않도록 흐리게 처리
-    */
-    filter: blur(5px);
-
-    /*
-        배경이 너무 진하지 않게
-    */
-    opacity: 0.35;
-
-    /*
-        게임보다 뒤에 위치
-    */
-    z-index: 0;
-
-    /*
-        흐림 때문에 가장자리에 생기는 빈 공간 방지
-    */
-    transform: scale(1.06);
-}
-
-
-/* =================================
-   게임 Canvas
-================================= */
-
-#game {
-
-    position: absolute;
-
-    left: 0;
-    top: 0;
-
-    width: 100%;
-    height: 100%;
-
-    z-index: 2;
 
     display: block;
 }
 
+/* 게임 이름 */
 
-/* =================================
-   UI
-================================= */
-
-#ui {
+#game-title {
 
     position: absolute;
 
     top: 15px;
-    left: 20px;
-    right: 20px;
+    left: 50%;
 
-    display: flex;
+    transform: translateX(-50%);
 
-    justify-content: space-between;
-    align-items: center;
+    color: white;
 
-    z-index: 10;
+    font-size: 26px;
+    font-weight: bold;
+
+    letter-spacing: 3px;
+
+    text-shadow:
+        0 3px 5px rgba(0, 0, 0, 0.25);
 
     pointer-events: none;
 }
 
+/* 점수 */
 
-.game-title {
+#score {
 
-    font-size: 22px;
+    position: absolute;
 
-    font-weight: 900;
-
-    color: white;
-
-    letter-spacing: 2px;
-
-    text-shadow:
-        0 2px 4px rgba(0,0,0,0.35);
-}
-
-
-.status {
-
-    padding: 8px 14px;
-
-    border-radius: 15px;
-
-    background: rgba(0,0,0,0.25);
+    top: 18px;
+    left: 18px;
 
     color: white;
 
-    font-size: 17px;
-
+    font-size: 18px;
     font-weight: bold;
 
     text-shadow:
-        0 1px 2px rgba(0,0,0,0.5);
+        0 2px 4px rgba(0, 0, 0, 0.4);
+
+    pointer-events: none;
 }
 
-
-/* =================================
-   조작 영역
-================================= */
+/* 조작 버튼 영역 */
 
 #controls {
 
@@ -172,45 +99,28 @@ body {
 
     left: 0;
     right: 0;
-    bottom: 20px;
+    bottom: 25px;
 
     height: 100px;
-
-    z-index: 20;
 
     pointer-events: none;
 }
 
+/* 기본 버튼 */
 
-/* 왼쪽/오른쪽 */
-
-.move-buttons {
+.control-button {
 
     position: absolute;
-
-    left: 20px;
-    bottom: 0;
-
-    display: flex;
-
-    gap: 10px;
-}
-
-
-/* 버튼 공통 */
-
-#controls button {
 
     width: 75px;
     height: 75px;
 
-    border: 2px solid
-        rgba(255,255,255,0.75);
+    border-radius: 20px;
 
-    border-radius: 22px;
+    border: 2px solid rgba(255,255,255,0.7);
 
     background:
-        rgba(30,30,30,0.40);
+        rgba(40, 80, 120, 0.45);
 
     color: white;
 
@@ -218,75 +128,46 @@ body {
 
     font-weight: bold;
 
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
     pointer-events: auto;
 
     -webkit-tap-highlight-color: transparent;
 
-    touch-action: none;
-
     box-shadow:
-        0 5px 10px rgba(0,0,0,0.2);
-
-    transition:
-        transform 0.05s,
-        background 0.05s;
+        0 4px 10px rgba(0,0,0,0.2);
 }
 
+/* 왼쪽 */
 
-/* 점프 버튼 */
+#leftButton {
+    left: 20px;
+}
+
+/* 오른쪽 */
+
+#rightButton {
+    left: 105px;
+}
+
+/* 점프 */
 
 #jumpButton {
 
-    position: absolute;
-
     right: 25px;
-    bottom: 0;
 
-    border-radius: 50% !important;
-
-    width: 82px !important;
-    height: 82px !important;
-
-    font-size: 34px !important;
+    border-radius: 50%;
 }
 
+/* 버튼 누르는 효과 */
 
-/* 버튼을 누르고 있을 때 */
+.control-button:active {
 
-#controls button:active {
-
-    transform: scale(0.92);
+    transform: scale(0.9);
 
     background:
         rgba(255,255,255,0.35);
-}
-
-
-/* =================================
-   작은 화면
-================================= */
-
-@media (max-width: 600px) {
-
-    #controls {
-        bottom: 15px;
-    }
-
-    #controls button {
-        width: 68px;
-        height: 68px;
-    }
-
-    #jumpButton {
-        width: 75px !important;
-        height: 75px !important;
-    }
-
-    .game-title {
-        font-size: 18px;
-    }
-
-    .status {
-        font-size: 15px;
-    }
 }
