@@ -3,12 +3,14 @@
 <head>
     <meta charset="UTF-8">
 
-    <!-- 아이패드/스마트폰 화면 대응 -->
-    <meta name="viewport"
-          content="width=device-width,
-                   initial-scale=1.0,
-                   maximum-scale=1.0,
-                   user-scalable=no">
+    <!-- 아이패드/모바일 화면 대응 -->
+    <meta
+        name="viewport"
+        content="width=device-width,
+        initial-scale=1.0,
+        maximum-scale=1.0,
+        user-scalable=no"
+    >
 
     <title>minicat</title>
 
@@ -19,32 +21,33 @@
 
     <div id="game-container">
 
-        <!-- 흐린 GIF 배경 -->
-        <div id="gif-background"></div>
+        <!-- 게임 화면 -->
+        <canvas id="gameCanvas"></canvas>
 
-        <!-- 실제 게임 화면 -->
-        <canvas id="game"></canvas>
+        <!-- 게임 이름 -->
+        <div id="game-title">
+            MINICAT
+        </div>
 
-        <!-- 상단 정보 -->
-        <div id="ui">
-            <div class="game-title">MINICAT</div>
-
-            <div class="status">
-                🐟 <span id="score">0</span>
-                &nbsp;&nbsp;
-                ❤️ <span id="lives">3</span>
-            </div>
+        <!-- 점수 -->
+        <div id="score">
+            SCORE : 0
         </div>
 
         <!-- 조작 버튼 -->
         <div id="controls">
 
-            <div class="move-buttons">
-                <button id="leftButton">◀</button>
-                <button id="rightButton">▶</button>
-            </div>
+            <button id="leftButton" class="control-button">
+                ◀
+            </button>
 
-            <button id="jumpButton">▲</button>
+            <button id="rightButton" class="control-button">
+                ▶
+            </button>
+
+            <button id="jumpButton" class="control-button jump">
+                ▲
+            </button>
 
         </div>
 
