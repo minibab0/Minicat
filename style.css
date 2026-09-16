@@ -4,10 +4,13 @@
     box-sizing: border-box;
 }
 
+
 html,
 body {
+
     width: 100%;
     height: 100%;
+
     overflow: hidden;
 
     background: #75cfff;
@@ -16,15 +19,18 @@ body {
         Arial,
         sans-serif;
 
-    /* 모바일에서 화면을 움직이지 않게 함 */
     touch-action: none;
 
     user-select: none;
 }
 
-/* 게임 전체 */
+
+/* =========================================
+   게임 전체
+========================================= */
 
 #game-container {
+
     position: relative;
 
     width: 100vw;
@@ -33,9 +39,13 @@ body {
     overflow: hidden;
 }
 
-/* 게임 캔버스 */
+
+/* =========================================
+   게임 화면
+========================================= */
 
 #gameCanvas {
+
     position: absolute;
 
     left: 0;
@@ -47,7 +57,10 @@ body {
     display: block;
 }
 
-/* 게임 이름 */
+
+/* =========================================
+   게임 제목
+========================================= */
 
 #game-title {
 
@@ -61,17 +74,21 @@ body {
     color: white;
 
     font-size: 26px;
+
     font-weight: bold;
 
     letter-spacing: 3px;
 
     text-shadow:
-        0 3px 5px rgba(0, 0, 0, 0.25);
+        0 3px 5px rgba(0, 0, 0, 0.3);
 
     pointer-events: none;
 }
 
-/* 점수 */
+
+/* =========================================
+   점수
+========================================= */
 
 #score {
 
@@ -83,6 +100,7 @@ body {
     color: white;
 
     font-size: 18px;
+
     font-weight: bold;
 
     text-shadow:
@@ -91,7 +109,10 @@ body {
     pointer-events: none;
 }
 
-/* 조작 버튼 영역 */
+
+/* =========================================
+   조작 버튼 영역
+========================================= */
 
 #controls {
 
@@ -99,6 +120,7 @@ body {
 
     left: 0;
     right: 0;
+
     bottom: 25px;
 
     height: 100px;
@@ -106,7 +128,10 @@ body {
     pointer-events: none;
 }
 
-/* 기본 버튼 */
+
+/* =========================================
+   기본 버튼
+========================================= */
 
 .control-button {
 
@@ -117,7 +142,9 @@ body {
 
     border-radius: 20px;
 
-    border: 2px solid rgba(255,255,255,0.7);
+    border:
+        2px solid
+        rgba(255, 255, 255, 0.7);
 
     background:
         rgba(40, 80, 120, 0.45);
@@ -138,22 +165,34 @@ body {
     -webkit-tap-highlight-color: transparent;
 
     box-shadow:
-        0 4px 10px rgba(0,0,0,0.2);
+        0 4px 10px
+        rgba(0, 0, 0, 0.2);
 }
 
-/* 왼쪽 */
+
+/* =========================================
+   왼쪽 버튼
+========================================= */
 
 #leftButton {
+
     left: 20px;
 }
 
-/* 오른쪽 */
+
+/* =========================================
+   오른쪽 버튼
+========================================= */
 
 #rightButton {
+
     left: 105px;
 }
 
-/* 점프 */
+
+/* =========================================
+   점프 버튼
+========================================= */
 
 #jumpButton {
 
@@ -162,12 +201,15 @@ body {
     border-radius: 50%;
 }
 
-/* 버튼 누르는 효과 */
+
+/* =========================================
+   버튼을 누르고 있을 때
+========================================= */
 
 .control-button:active {
 
     transform: scale(0.9);
 
     background:
-        rgba(255,255,255,0.35);
+        rgba(255, 255, 255, 0.35);
 }
