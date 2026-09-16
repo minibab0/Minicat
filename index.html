@@ -2,77 +2,28 @@
 <html lang="ko">
 
 <head>
-
     <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width,
-        initial-scale=1.0,
-        maximum-scale=1.0,
-        user-scalable=no"
-    >
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>minicat</title>
-
     <link rel="stylesheet" href="style.css">
-
 </head>
 
-
 <body>
-
     <div id="game-container">
-
-        <!-- 게임 화면 -->
         <canvas id="gameCanvas"></canvas>
 
+        <div id="game-title">MINICAT</div>
 
-        <!-- 게임 이름 -->
-        <div id="game-title">
-            MINICAT
-        </div>
+        <div id="score">SCORE : 0</div>
 
-
-        <!-- 점수 -->
-        <div id="score">
-            SCORE : 0
-        </div>
-
-
-        <!-- 조작 버튼 -->
         <div id="controls">
-
-            <button
-                id="leftButton"
-                class="control-button"
-            >
-                ◀
-            </button>
-
-
-            <button
-                id="rightButton"
-                class="control-button"
-            >
-                ▶
-            </button>
-
-
-            <button
-                id="jumpButton"
-                class="control-button jump"
-            >
-                ▲
-            </button>
-
+            <button id="leftButton" class="control-button">◀</button>
+            <button id="rightButton" class="control-button">▶</button>
+            <button id="jumpButton" class="control-button jump">▲</button>
         </div>
-
     </div>
 
-
     <script src="game.js"></script>
-
 </body>
 
 </html>
